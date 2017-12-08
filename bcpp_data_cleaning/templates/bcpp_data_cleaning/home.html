@@ -1,0 +1,70 @@
+{% extends 'bcpp_data_cleaning/base.html' %}
+{% load staticfiles %}
+
+{% block extra-scripts %}
+{% endblock extra-scripts %}
+{% block main %}
+
+<style>
+
+.bg-1 {
+    background-color: #428bca; /* dark blue */
+    color: #ffffff;
+}
+.bg-2 {
+    background-color: #5bc0de; /* light Blue */
+    color: #ffffff;
+}
+.bg-3 {
+    background-color: #f9f9f9; /* White */
+    color: #555555;
+}
+
+.numberCircle {
+    border-radius: 50%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+    background: #fff;
+    border: 2px solid black;
+    color: black;
+    text-align: center;
+    font: 13px Arial, sans-serif;
+    display: inline-block;
+}
+</style>
+
+    {{ block.super }}
+
+<div class="container bg-3 text-center">
+
+	<hr>
+	<a role="button" title="add moved member" class="btn btn-sm btn-default" href="{% url 'bcpp_data_cleaning_admin:bcpp_data_cleaning_movedmember_add' %}?next={% url 'home_url' %}">
+         Add Moved Member
+     </a>
+     <a role="button" title="add moved member" class="btn btn-sm btn-default" href="{% url 'bcpp_data_cleaning_admin:bcpp_data_cleaning_correctconsent_add' %}?next={% url 'home_url' %}">
+         Add Correct Consent
+     </a>
+     <a role="button" title="add moved member" class="btn btn-sm btn-default" href="{% url 'bcpp_data_cleaning_admin:bcpp_data_cleaning_deceasedmember_add' %}?next={% url 'home_url' %}">
+         Add Deceased Member
+     </a>
+    <hr>
+	<div class="panel-group">
+		<div class="panel panel-info">
+		<div class="panel-heading">Captured Data Statistics</div>
+			<div class="panel-body">
+			<hr>
+				Moved Members:   <div class="numberCircle">{{ moved_members }}</div>
+			<hr>
+				Correct Consent:   <div class="numberCircle">{{ correct_consents }}</div>
+
+			<hr>
+				Deceased Members:   <div class="numberCircle">{{ deceased_members }}</div>
+			<hr>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock main %}
