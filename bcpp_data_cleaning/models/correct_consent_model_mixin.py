@@ -7,10 +7,6 @@ class CorrectConsentMixin:
 
     """A model linked to the subject consent to record corrections."""
 
-    def save(self, *args, **kwargs):
-        self.compare_old_value_to_new_value()
-        super(CorrectConsentMixin, self).save(*args, **kwargs)
-
     def compare_old_value_to_new_value(self):
         """Raises an exception if an 'old_" field matchs the new value
         or both old and new are not provided."""

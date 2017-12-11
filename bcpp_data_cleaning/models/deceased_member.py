@@ -5,6 +5,8 @@ from edc_base.model_validators import date_not_future
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import DEATH_RELATIONSIP_TO_STUDY
 
+from .validate_subject_identifier_model_mixin import ValidateSybjectidentifierModelMixin
+
 
 TIME_POINT = (
     ('T0', 'T0'),
@@ -13,7 +15,7 @@ TIME_POINT = (
 )
 
 
-class DeceasedMember(BaseUuidModel):
+class DeceasedMember(ValidateSybjectidentifierModelMixin, BaseUuidModel):
 
     """A model completed by the user to report the death of a member.
     """
@@ -78,6 +80,11 @@ class DeceasedMember(BaseUuidModel):
 
     def __str__(self):
         return f'{self.subject_identifier}, {self.time_point}'
+
+    def save(self, *args, **kwargs):
+        self.vaidate_subject_identifier(
+            subject_identifier=self.subject_identifier)
+        super(DeceasedMember, self).save(*args, **kwargs)
 
     class Meta:
         app_label = 'bcpp_data_cleaning'

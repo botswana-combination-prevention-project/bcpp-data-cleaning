@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-
+import sys
+from pathlib import PurePath
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,6 +25,12 @@ SECRET_KEY = 'u&4-74!!_)ji@fhn(enrekcj=rv=(xfms2ecl&=nr3+8^4j1yl'
 
 
 APP_NAME = 'bcpp_data_cleaning'
+
+CONFIG_FILE = f'{APP_NAME}.conf'
+MYSQL_CONF = 'mysql.conf'
+
+
+ETC_DIR = '/etc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -47,6 +54,9 @@ INSTALLED_APPS = [
     'django_revision.apps.AppConfig',
     'edc_base.apps.AppConfig',
     'edc_device.apps.AppConfig',
+    'edc_registration.apps.AppConfig',
+    'bcpp_data_cleaning.apps.EdcIdentifierAppConfig',
+    'bcpp_data_cleaning.apps.EdcProtocolAppConfig',
     'bcpp_data_cleaning.apps.AppConfig'
 ]
 
@@ -86,9 +96,11 @@ WSGI_APPLICATION = 'bcpp_data_cleaning.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': os.path.join(ETC_DIR, APP_NAME, MYSQL_CONF),
+        },
+    },
 }
 
 
@@ -126,6 +138,15 @@ USE_TZ = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, APP_NAME, 'static')
+STATIC_URL = '/static/'
+if 'test' in sys.argv:
+    MEDIA_ROOT = str(PurePath(BASE_DIR).parent)
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, APP_NAME, 'media')
+MEDIA_URL = '/media/'
 
 KEY_PATH = '/Volumes/crypto_keys'
 # Static files (CSS, JavaScript, Images)

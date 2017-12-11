@@ -5,7 +5,8 @@ etc/
 .project
 .pydevproject
 .settings/
-db.sqlite*
+*db.sqlite*
+*migrations
 test-*
 bcpp/migrations/*
 crypto_fields/*

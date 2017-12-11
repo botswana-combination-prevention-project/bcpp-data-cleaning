@@ -10,6 +10,7 @@ from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import GENDER_UNDETERMINED, YES_NO
 
 from .correct_consent_model_mixin import CorrectConsentMixin
+from .validate_subject_identifier_model_mixin import ValidateSybjectidentifierModelMixin
 
 CONSENT_VERSION = (
     ('1', 'V1'),
@@ -20,7 +21,8 @@ CONSENT_VERSION = (
 )
 
 
-class CorrectConsent(CorrectConsentMixin, BaseUuidModel):
+class CorrectConsent(
+        ValidateSybjectidentifierModelMixin, CorrectConsentMixin, BaseUuidModel):
 
     """A model linked to the subject consent to record corrections."""
 
@@ -199,6 +201,12 @@ class CorrectConsent(CorrectConsentMixin, BaseUuidModel):
 
     def __str__(self):
         return f'{self.subject_identifier}, {self.consent_version}'
+
+    def save(self, *args, **kwargs):
+        self.vaidate_subject_identifier(
+            subject_identifier=self.subject_identifier)
+        self.compare_old_value_to_new_value()
+        super(CorrectConsent, self).save(*args, **kwargs)
 
     class Meta:
         app_label = 'bcpp_data_cleaning'

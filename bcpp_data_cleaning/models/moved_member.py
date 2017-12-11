@@ -4,6 +4,8 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import datetime_not_future
 from edc_constants.choices import YES_NO_UNKNOWN
 
+from .validate_subject_identifier_model_mixin import ValidateSybjectidentifierModelMixin
+
 TIME_POINT = (
     ('T0', 'T0'),
     ('T1', 'T1'),
@@ -11,7 +13,7 @@ TIME_POINT = (
 )
 
 
-class MovedMember(BaseUuidModel):
+class MovedMember(ValidateSybjectidentifierModelMixin, BaseUuidModel):
 
     """A model completed by the user to indicate a subject has
     moved from the household and or community.
@@ -82,6 +84,11 @@ class MovedMember(BaseUuidModel):
 
     def __str__(self):
         return f'{self.subject_identifier}, {self.time_point}'
+
+    def save(self, *args, **kwargs):
+        self.vaidate_subject_identifier(
+            subject_identifier=self.subject_identifier)
+        super(MovedMember, self).save(*args, **kwargs)
 
     class Meta:
         app_label = 'bcpp_data_cleaning'
