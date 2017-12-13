@@ -52,9 +52,9 @@ INSTALLED_APPS = [
     'tz_detect',
     'django_crypto_fields.apps.AppConfig',
     'django_revision.apps.AppConfig',
-    'edc_base.apps.AppConfig',
     'edc_device.apps.AppConfig',
     'edc_registration.apps.AppConfig',
+    'bcpp_data_cleaning.apps.EdcBaseAppConfig',
     'bcpp_data_cleaning.apps.EdcIdentifierAppConfig',
     'bcpp_data_cleaning.apps.EdcProtocolAppConfig',
     'bcpp_data_cleaning.apps.AppConfig'
@@ -148,7 +148,7 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, APP_NAME, 'media')
 MEDIA_URL = '/media/'
 
-KEY_PATH = '/Volumes/crypto_keys'
+# KEY_PATH = '/Volumes/crypto_keys'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 

@@ -14,31 +14,36 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url, include
+from django.conf import settings
 from edc_base.views import LogoutView, LoginView
 from edc_registration.admin_site import edc_registration_admin
+from django.contrib import admin
+from django.urls.conf import path, include
+from django.views.generic.base import RedirectView
 
 from .admin_site import bcpp_data_cleaning_admin
 from .views import HomeView, AdministrationView
 
-
-app_name = 'file_transfer_manager'
-
 admin.autodiscover()
+
+app_name = 'bcpp_data_cleaning'
 
 
 urlpatterns = [
-    url(r'^admin/edc_registration/', edc_registration_admin.urls),
-    url(r'^edc_registration/',
-        include('edc_registration.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^bcpp_data_cleaning_admin/', bcpp_data_cleaning_admin.urls),
-    url(r'^admininistration/', AdministrationView.as_view(),
-        name='administration_url'),
-    url(r'^edc/', include('edc_base.urls')),
-    url(r'login', LoginView.as_view(), name='login_url'),
-    url(r'^tz_detect/', include('tz_detect.urls')),
-    url(r'logout', LogoutView.as_view(
+    path('admin/', admin.site.urls),
+    path('administration/', AdministrationView.as_view(),
+         name='administration_url'),
+    path('bcpp_data_cleaning_admin/', bcpp_data_cleaning_admin.urls),
+    path('admin/', edc_registration_admin.urls),
+    path('edc_registration/', include('edc_registration.urls')),
+    path('edc_base/', include('edc_base.urls')),
+    path('edc_device/', include('edc_device.urls')),
+    path('tz_detect/', include('tz_detect.urls')),
+    path('login', LoginView.as_view(), name='login_url'),
+    path('accounts/login/', LoginView.as_view(), name='login_url'),
+    # path(r'^accounts/login/', include('registration.backends.hmac.urls')),
+    path('logout', LogoutView.as_view(
         pattern_name='login_url'), name='logout_url'),
-    url(r'', HomeView.as_view(), name='home_url'),
+    path('home/', HomeView.as_view(), name='home_url'),
+    path('', HomeView.as_view(), name='home_url'),
 ]
