@@ -1,10 +1,15 @@
---e /Users/ckgathi/source/edc-base
---e /Users/ckgathi/source/edc-constants
---e /Users/ckgathi/source/edc-dashboard
---e /Users/ckgathi/source/django-crypto-fields
---e /Users/ckgathi/source/django-revision
---e /Users/ckgathi/source/edc-device
---e /Users/ckgathi/source/edc-registration
---e /Users/ckgathi/source/edc-identifier
---e /Users/ckgathi/source/edc-protocol
---e /Users/ckgathi/source/edc-model-wrapper
+git+https://github.com/botswana-harvard/edc-base.git@develop#egg=edc_base
+git+https://github.com/botswana-harvard/edc-constants.git@develop#egg=edc_constants
+git+https://github.com/botswana-harvard/edc-dashboard.git@develop#egg=edc_dashboard
+git+https://github.com/botswana-harvard/edc-device.git@develop#egg=edc_device
+git+https://github.com/botswana-harvard/edc-form-validators.git@develop#egg=edc_form_validators
+git+https://github.com/botswana-harvard/edc-identifier.git@develop#egg=edc_identifier
+git+https://github.com/botswana-harvard/edc-model-admin.git@develop#egg=edc_model_admin
+git+https://github.com/botswana-harvard/edc-model-wrapper.git@develop#egg=edc_model_wrapper
+git+https://github.com/botswana-harvard/edc-navbar.git@develop#egg=edc_navbar
+git+https://github.com/botswana-harvard/edc-protocol.git@develop#egg=edc_protocol
+git+https://github.com/botswana-harvard/edc-registration.git@develop#egg=edc_registration
+git+https://github.com/erikvw/django-crypto-fields.git@develop#egg=django_crypto_fields
+git+https://github.com/erikvw/django-revision.git@develop#egg=django_revision
+git+https://github.com/erikvw/django-simple-history.git@master#egg=django_simple_history
+git+https://github.com/erikvw/django-js-reverse.git@develop#egg=django_js_reverse
