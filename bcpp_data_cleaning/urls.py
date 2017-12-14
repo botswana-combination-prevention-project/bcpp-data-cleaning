@@ -41,7 +41,6 @@ urlpatterns = [
     path('tz_detect/', include('tz_detect.urls')),
     path('login', LoginView.as_view(), name='login_url'),
     path('accounts/login/', LoginView.as_view(), name='login_url'),
-    # path(r'^accounts/login/', include('registration.backends.hmac.urls')),
     path('logout', LogoutView.as_view(
         pattern_name='login_url'), name='logout_url'),
     path('home/', HomeView.as_view(), name='home_url'),

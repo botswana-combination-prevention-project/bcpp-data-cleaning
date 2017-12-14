@@ -27,15 +27,14 @@ SECRET_KEY = 'u&4-74!!_)ji@fhn(enrekcj=rv=(xfms2ecl&=nr3+8^4j1yl'
 APP_NAME = 'bcpp_data_cleaning'
 
 CONFIG_FILE = f'{APP_NAME}.conf'
-MYSQL_CONF = 'mysql.conf'
 
 
-ETC_DIR = '/etc'
+ETC_DIR = os.path.join('/etc', APP_NAME)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bcpp-data-cleaning.bhp.org.bw']
 
 
 # Application definition
@@ -98,7 +97,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {
-            'read_default_file': os.path.join(ETC_DIR, APP_NAME, MYSQL_CONF),
+            'read_default_file': os.path.join(ETC_DIR, 'mysql.conf'),
         },
     },
 }
@@ -139,16 +138,15 @@ USE_TZ = True
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 CORS_ORIGIN_ALLOW_ALL = True
 
-
-STATIC_ROOT = os.path.join(BASE_DIR, APP_NAME, 'static')
-STATIC_URL = '/static/'
 if 'test' in sys.argv:
     MEDIA_ROOT = str(PurePath(BASE_DIR).parent)
 else:
     MEDIA_ROOT = os.path.join(BASE_DIR, APP_NAME, 'media')
 MEDIA_URL = '/media/'
 
-# KEY_PATH = '/Volumes/crypto_keys'
+KEY_PATH = os.path.join(ETC_DIR, 'crypto_fields')
+AUTO_CREATE_KEYS = False
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
