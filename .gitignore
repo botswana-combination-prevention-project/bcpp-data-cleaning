@@ -6,7 +6,7 @@ etc/
 .pydevproject
 .settings/
 *db.sqlite*
-*migrations
+*bcpp_data_cleaning/migrations/*
 test-*
 crypto_fields/*
 # Byte-compiled / optimized / DLL files

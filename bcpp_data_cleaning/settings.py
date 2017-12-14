@@ -32,9 +32,9 @@ CONFIG_FILE = f'{APP_NAME}.conf'
 ETC_DIR = os.path.join('/etc', APP_NAME)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['bcpp-data-cleaning.bhp.org.bw']
+ALLOWED_HOSTS = ['localhost', 'bcpp-data-cleaning.bhp.org.bw']
 
 
 # Application definition
@@ -145,7 +145,6 @@ else:
 MEDIA_URL = '/media/'
 
 KEY_PATH = os.path.join(ETC_DIR, 'crypto_fields')
-AUTO_CREATE_KEYS = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

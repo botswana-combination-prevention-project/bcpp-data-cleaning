@@ -205,7 +205,8 @@ class CorrectConsent(
     def save(self, *args, **kwargs):
         self.vaidate_subject_identifier(
             subject_identifier=self.subject_identifier)
-        self.compare_old_value_to_new_value()
+        self.compare_old_value_to_new_value(
+            subject_identifier=self.subject_identifier)
         super(CorrectConsent, self).save(*args, **kwargs)
 
     class Meta:
