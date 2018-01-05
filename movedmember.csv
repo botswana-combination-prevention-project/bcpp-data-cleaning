@@ -1,0 +1,4 @@
+,id,validatesybjectidentifiermodelmixin_ptr,created,modified,user_created,user_modified,hostname_created,hostname_modified,revision,device_created,device_modified,subject_identifier,report_datetime,time_point,moved_household,moved_community,new_community,update_locator,comment
+0,1,1,2018-01-05 12:49:11.913335+00:00,2018-01-05 12:49:12.004907+00:00,ckgathi,ckgathi,ckgathi,ckgathi,:develop:d7e62b63f976c5c8766b9ef6c3ba3d09e2930dd7,99,99,066-12920457-3,2018-01-05 12:49:06+00:00,T1,Yes,Yes,,Yes,
+1,2,2,2018-01-05 12:50:00.674787+00:00,2018-01-05 12:50:00.758934+00:00,ckgathi,ckgathi,ckgathi,ckgathi,:develop:d7e62b63f976c5c8766b9ef6c3ba3d09e2930dd7,99,99,066-366000047-7,2018-01-05 12:49:54+00:00,T1,Yes,Yes,,Yes,
+2,3,3,2018-01-05 12:50:46.440876+00:00,2018-01-05 12:50:46.540961+00:00,ckgathi,ckgathi,ckgathi,ckgathi,:develop:d7e62b63f976c5c8766b9ef6c3ba3d09e2930dd7,99,99,066-351500607-5,2018-01-05 12:50:39+00:00,T1,Yes,Yes,,Yes,
